@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv1;
     ListView lv;
 
-    int x,p;
+     int x,p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(getApplicationContext(), "Bitte geben Sie die Zahl bis 50 ein", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Bitte geben Sie die Zahl bis 50 ein ", Toast.LENGTH_LONG).show();
                 }
 
                 tv1.setVisibility(View.VISIBLE);
