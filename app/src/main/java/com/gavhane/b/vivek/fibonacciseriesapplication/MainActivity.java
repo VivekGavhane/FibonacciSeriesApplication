@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
                 try                                              // Use try catch block to handle exceptions to prevent App from crashing in case invalid inputs
                 {
-                    ListView resultsListViewNew = (ListView) findViewById(R.id.lv);
-                    LinkedHashMap<String,String> nameAddressesNew = new LinkedHashMap<String,String>();
+                    ListView resultsListViewNew = (ListView) findViewById(R.id.lv);                         // List view of android to display results to UI
+                    LinkedHashMap<String,String> nameAddressesNew = new LinkedHashMap<String,String>();     // Linked hashmap to store results in an order in which they are entered
 
-                    for (int p=0;p<=x;p++) {
+                    for (int p=0;p<=x;p++) {                                                                // for loop to enter fibonacci values till the number x which user has entered
 
                         if (p == 2) {
                             nameAddressesNew.put("f(" + 2 + ") =", "                   " + 0);
@@ -84,25 +84,29 @@ public class MainActivity extends AppCompatActivity {
 
                     List<TreeMap<String, String>> listItemsNew = new ArrayList<>();
 
-                    SimpleAdapter adapterNew = new SimpleAdapter(MainActivity.this,listItemsNew , R.layout.list_item,
+                    SimpleAdapter adapterNew = new SimpleAdapter(MainActivity.this,listItemsNew , R.layout.list_item,           // simple adapter with 5 arguments describing and connecting main 
                             new String[]{ "First Line","Second Line"}, new int[]{R.id.text1, R.id.text2});
 
-                    Iterator it = nameAddressesNew.entrySet().iterator();
-                    while (it.hasNext())
+                    Iterator it = nameAddressesNew.entrySet().iterator();                                // taking all the values of linked hashmap and iterate it to enter those in treemap to give them designed fonts through xml
+                    while (it.hasNext())                                                                 // while loop to iterate through all these values
                     {
                         TreeMap<String, String> resultsMap = new TreeMap<>();
                         Map.Entry pair = (Map.Entry)it.next();
-                        resultsMap.put("First Line", pair.getKey().toString());
-                        resultsMap.put("Second Line", pair.getValue().toString());
-                        listItemsNew.add(resultsMap);
+                        resultsMap.put("First Line", pair.getKey().toString());                          // all keys will get first line format
+                        resultsMap.put("Second Line", pair.getValue().toString());                       // all values will get second line format
+                        listItemsNew.add(resultsMap);                                                    // put the resulted values in our List
                     }
 
-                    resultsListViewNew.setAdapter(adapterNew);
+                    resultsListViewNew.setAdapter(adapterNew);                                            // apply our customised adapter along with all the data to List view
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(getApplicationContext(), "Bitte geben Sie die Zahl bis 50 ein ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Bitte geben Sie die Zahl bis 50 ein ", Toast.LENGTH_LONG).show();          // if user exceeds the limit then instead of crashing of an App this message will be displayed as toast
                 }
+                
+                
+                
+               // Below code is for setting of buttons and text fields visibility after calculating the fibonacci series by clicking button 1 
 
                 tv1.setVisibility(View.VISIBLE);
                 tv1.setText("Fibonacci series bis:"+ x);
@@ -114,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
         });
+        
+             // Below code is for setting of buttons and text fields visibility after calculating the fibonacci series by clicking button 2 to allow user to re-enter number for new fibonacci series
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,17 +134,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    int[] F = new int[51];
+    int[] F = new int[51];                          // this int array stores already calculated fibonacci values to use them for next time to minimise the calculation time   (improved performance by memorisation technique)
 
-    int Fib(int n) {
+    int Fib(int n) {                                // method to calculate fibonacci number,  passed object is a number that user will enter upto which we need to calculate the fibonacci series.
 
-        if (n <= 1) {
+        if (n <= 1) {                               // to take fibonacci values as equal to entered number n   for 0 and 1  equal to 0 and 1 respectively
             return n;
         }
-        if (F[n] != -1) {
+        if (F[n] != -1) {                           // if F[n] status is not -1 means fibonacci is already calculated. So directly return already calculated value. No need to calculate it again
             return F[n];
         }
-        F[n] = Fib(n - 1) + Fib(n - 2);
+        F[n] = Fib(n - 1) + Fib(n - 2);             // fibonacci formula to calculate fibonacci of number = n
         return F[n];
     }
 }
