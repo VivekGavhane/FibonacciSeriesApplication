@@ -26,6 +26,9 @@ import java.util.TreeMap;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class MainActivity extends AppCompatActivity {
+    
+    
+    // All the comments are added inline
 
     EditText et1;
     Button b1,b2;
@@ -39,29 +42,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        et1 = (EditText) findViewById(R.id.et1);
+        et1 = (EditText) findViewById(R.id.et1);                // to take number input from user upto which App have to calculate Fibonacci series 
 
-        tv1 = (TextView) findViewById(R.id.tv1);
+        tv1 = (TextView) findViewById(R.id.tv1);                // to show upto what number we calculated Fibonacci series after clicking calculate buttton
         tv1.setVisibility(View.INVISIBLE);
 
-        b1 = (Button) findViewById(R.id.b1);
-        b2 = (Button) findViewById(R.id.b2);
-        b2.setVisibility(View.INVISIBLE);
+        b1 = (Button) findViewById(R.id.b1);                    // Button to to calculate Fibonacci series after it's click
+        b2 = (Button) findViewById(R.id.b2);                    // Button to allow user to retype the number to calculate
+        b2.setVisibility(View.INVISIBLE);                       
 
 
-        for (int i=0;i<51;i++)
+        for (int i=0;i<51;i++)                                  // for loop to memorise the array of already calculated Fibonacci numbers
         {
-            F[i] = -1;
+            F[i] = -1;                                          //  used status -1 to know if the Fibonacci is already calculated in memory
         }
 
-        b1.setOnClickListener(new View.OnClickListener() {
+        b1.setOnClickListener(new View.OnClickListener() {      // button b1 on-click listener
             @Override
             public void onClick(View view) {
-                String result = et1.getText().toString();
-                x = Integer.parseInt(result);
+                String result = et1.getText().toString();        // get number in the String format from et1 edit text field
+                x = Integer.parseInt(result);                    // convert above number from String to integer
 
 
-                try
+                try                                              // Use try catch block to handle exceptions to prevent App from crashing in case invalid inputs
                 {
                     ListView resultsListViewNew = (ListView) findViewById(R.id.lv);
                     LinkedHashMap<String,String> nameAddressesNew = new LinkedHashMap<String,String>();
